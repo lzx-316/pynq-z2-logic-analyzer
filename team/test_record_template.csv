@@ -1,0 +1,7 @@
+测试编号,日期,测试类型,测试对象,输入条件,预期结果,实际结果,证据文件,负责人,结论,备注
+TBD-001,,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,,,队友A,,待执行
+TBD-002,2026/10/13,板级,Overlay加载,logic_analyzer.bit,Overlay无错误加载,Overlay 加载成功，done=1，trigger_ptr=256,TBD-002_overlay_ok.png,队长,,待执行
+TBD-003,,板级,Notebook,内部测试模式,显示4通道波形并导出CSV,,,队友B,,待执行
+TBD-004,,边界,无触发场景,不满足触发条件,超时或未触发状态明确,,,队友A,,待执行
+TBD-005,2026/10/13,边界,重复采集,连续运行10次,无死锁和超时,连续 10 次采集全部 done=1，无超时,TBD-005_repeat_10.png,队长,,待执行
+TBD-006,2026/10/13,一致性,bit-hwh-Notebook,同一版本,IP名称和寄存器一致,bit/hwh 同为 logic_analyzer，来自 v2-baseline,TBD-002_overlay_ok.png,队长,,待执行
