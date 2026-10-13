@@ -1,7 +1,7 @@
-���Ա��,����,��������,���Զ���,��������,Ԥ�ڽ��,ʵ�ʽ��,֤���ļ�,������,����,��ע
-TBD-001,,����,logic_analyzer_tb,��λ���ڲ������ź�,�ɼ���ɲ���������,,,����A,,��ִ��
-TBD-002,2026/10/13,�弶,Overlay����,logic_analyzer.bit,Overlay�޴������,Overlay ���سɹ���done=1��trigger_ptr=256,TBD-002_overlay_ok.png,�ӳ�,,��ִ��
-TBD-003,,�弶,Notebook,�ڲ�����ģʽ,��ʾ4ͨ�����β�����CSV,,,����B,,��ִ��
-TBD-004,,�߽�,�޴�������,�����㴥������,��ʱ��δ����״̬��ȷ,,,����A,,��ִ��
-TBD-005,2026/10/13,�߽�,�ظ��ɼ�,��������10��,�������ͳ�ʱ,���� 10 �βɼ�ȫ�� done=1���޳�ʱ,TBD-005_repeat_10.png,�ӳ�,,��ִ��
-TBD-006,2026/10/13,һ����,bit-hwh-Notebook,ͬһ�汾,IP���ƺͼĴ���һ��,bit/hwh ͬΪ logic_analyzer������ v2-baseline,TBD-002_overlay_ok.png,�ӳ�,,��ִ��
+﻿测试编号,日期,测试类型,测试对象,输入条件,预期结果,实际结果,证据文件,负责人,结论,备注
+TBD-001,,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,,,队友A,,待执行
+TBD-002,2026-10-13,板级,Overlay加载,logic_analyzer.bit,Overlay无错误加载,加载成功；done=1 triggered=1 trigger_ptr=256,TBD-002_overlay_ok.png,队长,通过,control idle=0x81004000
+TBD-003,2026-10-13,板级,Notebook,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；CSV含513行6列,TBD-003_waveform_4ch.png / TBD-003_logic_capture.csv,队长代跑,通过,队友B需自行复跑确认
+TBD-004,,边界,无触发场景,不满足触发条件,超时或未触发状态明确,,,队友A,,待执行
+TBD-005,2026-10-13,边界,重复采集,连续运行10次,无死锁和超时,连续10次全部done=1且无超时,TBD-005_repeat_10.png,队长,通过,trigger_ptr为256或257均属正常
+TBD-006,2026-10-13,一致性,bit-hwh-Notebook,同一版本,IP名称和寄存器一致,BRAM基地址0x40000000长度8192与hwh一致,TBD-006_addrs.png待补,队长,通过,该PYNQ版本ip_dict不含BRAM控制器
