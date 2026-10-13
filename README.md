@@ -23,7 +23,7 @@
 | rtl | 可综合Verilog源码 |
 | tb | Testbench |
 | constraints | PYNQ-Z2约束 |
-| pynq | bit、hwh、xsa和Notebook发布文件 |
+| pynq | bit、hwh、xsa发布文件 |
 | notebooks | 实验和演示Notebook |
 | scripts | Vivado Tcl脚本 |
 | reports | 时序、资源和DRC报告 |
