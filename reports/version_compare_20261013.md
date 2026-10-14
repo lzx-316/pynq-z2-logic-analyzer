@@ -107,7 +107,7 @@
 
 1. 干净目录 Tcl 重建**成功**，且与基线在时序、资源、DRC、bitstream 配置数据四个维度上一致，其中 bitstream 为逐字节一致。
 2. 发布产物采用本次构建的 `logic_analyzer.bit` + `logic_analyzer.hwh` + `design_1.xsa`（同一次构建生成，互相配套）。
-3. 待办一：用新 bit 上板实测一次并留存截图（原计划 10-15）。
+3. 上板实测：2026-10-14 完成，结果见第十一节。
 4. 待办二：10-21 依据本次对比结果，决定是否替换 `repo\pynq` 下的基线文件并提交。
 5. 已知差异：hwh 4 行元数据差异，已在第八节说明；不影响功能，如评审问及可直接引用本节。
 
@@ -118,3 +118,20 @@ source "D:/FPGA/production/repo/scripts/build_clean_project.tcl"
 ```
 
 执行前需保证 Vivado 中没有打开其它工程，且 `D:\FPGA\build_clean` 下不存在同名工程目录。
+
+## 十一、上板验证（2026-10-14）
+
+用本次重建生成的 `logic_analyzer.bit` 与 `logic_analyzer.hwh` 在 PYNQ-Z2 上板实测：
+
+| 检查项 | 新建（10-14） | 基线（10-13） | 判断 |
+|---|---|---|---|
+| Overlay 加载 | 成功，`control idle = 0x81004000` | 成功，同值 | 一致 |
+| `done / triggered` | `done=1 triggered=1` | 同 | 一致 |
+| `trigger_ptr` | 256 | 256（个别 257） | 一致 |
+| 有效采样点 | 513 | 513 | 一致 |
+| 四通道波形 | 4 路方波，first probes 为 0～15 递增 | 同 | 一致 |
+| 连续采集 10 次 | 10/10，`trigger_ptr` 范围 256～257 | 10/10 | 一致 |
+
+**结论：干净重建产物在板卡上的行为与冻结基线一致，结合第七节的逐字节比对，可认定"Tcl 干净重建"完整复现了基线。**
+
+证据位置：`team/evidence/2026-10-14/`（`rebuild_TBD-007` 至 `rebuild_TBD-009`）。
