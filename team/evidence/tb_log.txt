@@ -1,0 +1,4 @@
+run all
+FAIL: done did not assert, status=0x00000000
+PASS: clear returned FSM to IDLE
+$finish called at time : 212126 ns : File "D:/FPGA/production/pynq-z2-logic-analyzer/tb/logic_analyzer_tb.v" Line 66
