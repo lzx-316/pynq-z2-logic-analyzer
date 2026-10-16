@@ -26,7 +26,7 @@ module logic_analyzer_tb;
 
     initial begin
         clk = 1'b0;
-        forever #5 clk = ~clk;
+        forever #10 clk = ~clk;
     end
 
     initial begin
@@ -42,6 +42,9 @@ module logic_analyzer_tb;
         ctrl[1] = 1'b1;
         @(posedge clk);
         ctrl[1] = 1'b0;
+        ctrl[0] = 1'b1;
+        @(posedge clk);
+        ctrl[0] = 1'b0;
 
         repeat (1200) @(posedge clk);
         probe_i[0] = 1'b1;
