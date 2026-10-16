@@ -17,6 +17,9 @@
 .hw/
 *.zip
 
+# HDL editor cache (DIDEHDL - written by HDL editor when opening a .v file)
+.dide/
+
 # Python
 __pycache__/
 *.pyc
