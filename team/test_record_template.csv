@@ -1,10 +1,17 @@
 ﻿测试编号,日期,测试类型,测试对象,输入条件,预期结果,实际结果,证据文件,负责人,结论,备注
-TBD-001,,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,,,队友A,,待执行
+TBD-001,2026-10-16,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,done=1；trigger_ptr=24；clear后done=0,team/evidence/tb_log.txt,队友A,通过,Vivado 2026.1 XSim；来源PR #2
 TBD-002,2026-10-13,板级,Overlay加载,logic_analyzer.bit,Overlay无错误加载,加载成功；done=1 triggered=1 trigger_ptr=256,TBD-002_overlay_ok.png,队长,通过,control idle=0x81004000
-TBD-003,2026-10-13,板级,Notebook,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；CSV含513行6列,TBD-003_waveform_4ch.png / TBD-003_logic_capture.csv,队长代跑,通过,队友B需自行复跑确认
+TBD-003,2026-10-13,板级,Notebook,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；CSV含513行6列,TBD-003_waveform_4ch.png / TBD-003_logic_capture.csv,队长代跑,通过,队长代跑；队友B独立复跑见TBD-010
 TBD-004,,边界,无触发场景,不满足触发条件,超时或未触发状态明确,,,队友A,,待执行
 TBD-005,2026-10-13,边界,重复采集,连续运行10次,无死锁和超时,连续10次全部done=1且无超时,TBD-005_repeat_10.png,队长,通过,trigger_ptr为256或257均属正常
 TBD-006,2026-10-13,一致性,bit-hwh-Notebook,同一版本,IP名称和寄存器一致,BRAM基地址0x40000000长度8192与hwh一致,TBD-006_addrs.png,队长,通过,该PYNQ版本ip_dict不含BRAM控制器；地址截图10-14补齐
 TBD-007,2026-10-14,板级,Overlay加载（干净重建bit）,logic_analyzer.bit重建版,Overlay无错误加载,加载成功；control idle=0x81004000,rebuild_TBD-007_overlay_ok.png / rebuild_TBD-007_status.png,队长,通过,IP列表与基线一致；BRAM控制器以内存设备暴露
 TBD-008,2026-10-14,板级,Notebook（干净重建bit）,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；valid samples=513；CSV已导出,rebuild_TBD-008_waveform_4ch.png / rebuild_TBD-008_logic_capture.csv,队长,通过,first probes为0至15递增计数
 TBD-009,2026-10-14,边界,重复采集（干净重建bit）,连续运行10次,无死锁和超时,连续10次全部done=1；trigger_ptr范围256至257,rebuild_TBD-009_repeat_10.png,队长,通过,与基线10-13结果一致
+TBD-010,,板级,Notebook（队员B独立复跑）,内部测试模式,显示4通道波形并导出CSV,,,队友B,,待执行；使用最新main的bit和hwh
+TBD-011,,边界,上升沿触发,CH0由0变1,正确触发并记录trigger_ptr,,,队友A,,待执行
+TBD-012,,边界,下降沿触发,CH0由1变0,正确触发并记录trigger_ptr,,,队友A,,待执行
+TBD-013,,边界,任意边沿触发,CH0发生跳变,正确触发并记录trigger_ptr,,,队友A,,待执行
+TBD-014,,边界,预触发和后触发组合,修改pre_trigger与post_trigger,有效样本数和触发点位置正确,,,队友A,,待执行
+TBD-015,,边界,环形缓冲回绕,连续采样超过2048点,数据无丢点且顺序可还原,,,队友A,,待执行
+TBD-016,,边界,采集中clear,采集运行时写入clear,done清零且下一次arm可重新采集,,,队友A,,待执行
