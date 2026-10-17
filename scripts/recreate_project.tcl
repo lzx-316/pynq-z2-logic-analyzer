@@ -27,12 +27,12 @@
 #
 # 3. The following remote source files that were added to the original project:-
 #
-#    "D:/FPGA/guide/project5_logic_analyzer_files/rtl/capture_engine.v"
-#    "D:/FPGA/guide/project5_logic_analyzer_files/rtl/sample_divider.v"
-#    "D:/FPGA/guide/project5_logic_analyzer_files/rtl/sync_4ch.v"
-#    "D:/FPGA/guide/project5_logic_analyzer_files/rtl/logic_analyzer_top.v"
-#    "D:/FPGA/guide/project5_logic_analyzer_files/constraints/pynq_z2_logic_analyzer.xdc"
-#    "D:/FPGA/guide/project5_logic_analyzer_files/rtl/logic_analyzer_tb.v"
+#    "<repo>/rtl/capture_engine.v"
+#    "<repo>/rtl/sample_divider.v"
+#    "<repo>/rtl/sync_4ch.v"
+#    "<repo>/rtl/logic_analyzer_top.v"
+#    "<repo>/constraints/pynq_z2_logic_analyzer.xdc"
+#    "<repo>/tb/logic_analyzer_tb.v"
 #
 #*****************************************************************************************
 
@@ -40,12 +40,12 @@
 proc checkRequiredFiles { origin_dir} {
   set status true
   set files [list \
- "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/rtl/capture_engine.v"]"\
- "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/rtl/sample_divider.v"]"\
- "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/rtl/sync_4ch.v"]"\
- "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/rtl/logic_analyzer_top.v"]"\
- "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/constraints/pynq_z2_logic_analyzer.xdc"]"\
- "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/rtl/logic_analyzer_tb.v"]"\
+ "[file normalize "$origin_dir/../rtl/capture_engine.v"]"\
+ "[file normalize "$origin_dir/../rtl/sample_divider.v"]"\
+ "[file normalize "$origin_dir/../rtl/sync_4ch.v"]"\
+ "[file normalize "$origin_dir/../rtl/logic_analyzer_top.v"]"\
+ "[file normalize "$origin_dir/../constraints/pynq_z2_logic_analyzer.xdc"]"\
+ "[file normalize "$origin_dir/../tb/logic_analyzer_tb.v"]"\
   ]
   foreach ifile $files {
     if { ![file isfile $ifile] } {
@@ -124,7 +124,7 @@ if { $::argc > 0 } {
 set orig_proj_dir "[file normalize "$origin_dir/"]"
 
 # Check for paths and files needed for project creation
-set validate_required 0
+set validate_required 1
 if { $validate_required } {
   if { [checkRequiredFiles $origin_dir] } {
     puts "Tcl file $script_file is valid. All files required for project creation is accesable. "
@@ -168,10 +168,10 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/../../guide/project5_logic_analyzer_files/rtl/capture_engine.v"] \
- [file normalize "${origin_dir}/../../guide/project5_logic_analyzer_files/rtl/sample_divider.v"] \
- [file normalize "${origin_dir}/../../guide/project5_logic_analyzer_files/rtl/sync_4ch.v"] \
- [file normalize "${origin_dir}/../../guide/project5_logic_analyzer_files/rtl/logic_analyzer_top.v"] \
+ [file normalize "${origin_dir}/../rtl/capture_engine.v"] \
+ [file normalize "${origin_dir}/../rtl/sample_divider.v"] \
+ [file normalize "${origin_dir}/../rtl/sync_4ch.v"] \
+ [file normalize "${origin_dir}/../rtl/logic_analyzer_top.v"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -196,9 +196,9 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/../../guide/project5_logic_analyzer_files/constraints/pynq_z2_logic_analyzer.xdc"]"
+set file "[file normalize "$origin_dir/../constraints/pynq_z2_logic_analyzer.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/../../guide/project5_logic_analyzer_files/constraints/pynq_z2_logic_analyzer.xdc"
+set file "$origin_dir/../constraints/pynq_z2_logic_analyzer.xdc"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
@@ -214,7 +214,7 @@ if {[string equal [get_filesets -quiet sim_1] ""]} {
 # Set 'sim_1' fileset object
 set obj [get_filesets sim_1]
 set files [list \
- [file normalize "${origin_dir}/../../guide/project5_logic_analyzer_files/rtl/logic_analyzer_tb.v"] \
+ [file normalize "${origin_dir}/../tb/logic_analyzer_tb.v"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -240,16 +240,16 @@ set obj [get_filesets utils_1]
 
 # Adding sources referenced in BDs, if not already added
 if { [get_files [list capture_engine.v]] == "" } {
-  import_files -quiet -fileset sources_1 D:/FPGA/guide/project5_logic_analyzer_files/rtl/capture_engine.v
+  import_files -quiet -fileset sources_1   [file normalize "${origin_dir}/../rtl/capture_engine.v"]
 }
 if { [get_files [list sample_divider.v]] == "" } {
-  import_files -quiet -fileset sources_1 D:/FPGA/guide/project5_logic_analyzer_files/rtl/sample_divider.v
+  import_files -quiet -fileset sources_1   [file normalize "${origin_dir}/../rtl/sample_divider.v"]
 }
 if { [get_files [list sync_4ch.v]] == "" } {
-  import_files -quiet -fileset sources_1 D:/FPGA/guide/project5_logic_analyzer_files/rtl/sync_4ch.v
+  import_files -quiet -fileset sources_1   [file normalize "${origin_dir}/../rtl/sync_4ch.v"]
 }
 if { [get_files [list logic_analyzer_top.v]] == "" } {
-  import_files -quiet -fileset sources_1 D:/FPGA/guide/project5_logic_analyzer_files/rtl/logic_analyzer_top.v
+  import_files -quiet -fileset sources_1   [file normalize "${origin_dir}/../rtl/logic_analyzer_top.v"]
 }
 
 
@@ -1035,12 +1035,10 @@ set_property REGISTERED_WITH_MANAGER "1" [get_files design_1.bd ]
 set_property SYNTH_CHECKPOINT_MODE "Hierarchical" [get_files design_1.bd ] 
 
 #call make_wrapper to create wrapper files
-if { [get_property IS_LOCKED [ get_files -norecurse [list design_1.bd]] ] == 1  } {
-  import_files -fileset sources_1 [file normalize "${origin_dir}/logic_analyzer_50m_complete_v2.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v" ]
-} else {
-  set wrapper_path [make_wrapper -fileset sources_1 -files [ get_files -norecurse [list design_1.bd]] -top]
-  add_files -norecurse -fileset sources_1 $wrapper_path
-}
+# The Block Design is created by this script, so it is never locked here.
+# Always generate the wrapper instead of importing it from the original .gen directory.
+set wrapper_path [make_wrapper -fileset sources_1 -files [ get_files -norecurse [list design_1.bd]] -top]
+add_files -norecurse -fileset sources_1 $wrapper_path
 
 
 set idrFlowPropertiesConstraints ""
