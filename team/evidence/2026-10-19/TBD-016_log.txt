@@ -1,0 +1,29 @@
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Mon Oct 19 17:56:09 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_boundary/xsim_script.tcl
+# xsim {tb_boundary} -testplusarg CASE16 -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+BOUNDARY_TB start (CASE=16, 0=all)
+
+=== TBD-016: clear while capturing ===
+    PASS: capture is running
+    PASS: done low while running
+    PASS: clear during capture returns FSM to IDLE
+    PASS: done cleared
+    PASS: triggered cleared
+    PASS: wr_ptr cleared
+    PASS: re-arm after clear captures again
+    PASS: done asserts after re-arm
+
+BOUNDARY_SUMMARY: ALL PASS
+$finish called at time : 82271 ns : File "D:/FPGA/production/pynq-z2-logic-analyzer/tb/logic_analyzer_boundary_tb.v" Line 395
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Oct 19 17:56:11 2026...

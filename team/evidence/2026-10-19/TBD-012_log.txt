@@ -1,0 +1,24 @@
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Mon Oct 19 17:56:00 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_boundary/xsim_script.tcl
+# xsim {tb_boundary} -testplusarg CASE12 -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+BOUNDARY_TB start (CASE=12, 0=all)
+
+=== TBD-012: falling edge (trigger_mode=1) ===
+    PASS: rising transition does NOT trigger in falling mode
+    PASS: falling edge triggers
+    PASS: trigger_ptr equals wr_ptr at trigger
+
+BOUNDARY_SUMMARY: ALL PASS
+$finish called at time : 26231 ns : File "D:/FPGA/production/pynq-z2-logic-analyzer/tb/logic_analyzer_boundary_tb.v" Line 395
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Oct 19 17:56:02 2026...

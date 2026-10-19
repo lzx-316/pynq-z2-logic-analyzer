@@ -1,0 +1,29 @@
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Mon Oct 19 17:56:07 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_boundary/xsim_script.tcl
+# xsim {tb_boundary} -testplusarg CASE15 -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+BOUNDARY_TB start (CASE=15, 0=all)
+
+=== TBD-015: ring buffer wraparound (>2048 samples) ===
+    PASS: write address wrapped 8188 -> 0
+    PASS: history_count capped at 2048
+    PASS: >=2095 samples written before trigger
+    INFO: wr_count=2100  wr_ptr=52  wr_count%2048=52
+    PASS: wr_ptr == writes mod 2048
+    PASS: trigger still detected after wraparound
+    PASS: trigger_ptr correct after wraparound
+    PASS: done asserts after wraparound capture
+
+BOUNDARY_SUMMARY: ALL PASS
+$finish called at time : 2109271 ns : File "D:/FPGA/production/pynq-z2-logic-analyzer/tb/logic_analyzer_boundary_tb.v" Line 395
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Oct 19 17:56:09 2026...
