@@ -15,3 +15,4 @@ TBD-013,,边界,任意边沿触发,CH0发生跳变,正确触发并记录trigger_
 TBD-014,,边界,预触发和后触发组合,修改pre_trigger与post_trigger,有效样本数和触发点位置正确,,,队友A,,待执行
 TBD-015,,边界,环形缓冲回绕,连续采样超过2048点,数据无丢点且顺序可还原,,,队友A,,待执行
 TBD-016,,边界,采集中clear,采集运行时写入clear,done清零且下一次arm可重新采集,,,队友A,,待执行
+TBD-017,2026-10-19,板级,发布候选bit/hwh smoke test,当前repo/pynq新bit与hwh,Overlay加载并完成一次4通道采集,Overlay加载成功；done=1；triggered=1；trigger_ptr=257；valid samples=513；CSV为513行6列；连续10次PASS 10/10,TBD-017_overlay_ok.png / TBD-017_status.png / TBD-017_valid_samples.png / TBD-017_waveform_4ch.png / TBD-017_csv_saved.png / TBD-017_repeat_10.png / TBD-017_logic_capture.csv,队长,通过,新发布候选bit/hwh板级smoke test
