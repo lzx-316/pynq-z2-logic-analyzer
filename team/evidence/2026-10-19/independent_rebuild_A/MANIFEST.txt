@@ -1,0 +1,15 @@
+独立重建清单 2026-10-19 18:20:17
+源码: main 5d6d324
+构建根: D:\FPGA\rebuild_a_20261019
+
+vivado_build2.log            181150 B  8c23f9712e86a3b9168cebd392bbc4f4d56bece35180ad25575cb3d5d8d93a5e
+console2.log                 183067 B  adbae9a3440292933ec483850bb70479b3b8297597dd45fe4dfe78954186c2f2
+build_a.tcl                    4626 B  ce0626e206bf00af19478116d69e67fb49d3ad9340caccb1ae22b5b5cf454551
+run_build.tcl                   199 B  4eb717d81609671a6b8ba1a01c5e259b86db60584ec8782a03db118d054cb035
+REBUILD_REPORT.md              5071 B  84317830d0ebc741c5e5dfc9c8ce0f917f0e0cf9a6a21f65be1d16c4ad5a8de7
+release_files/design_1.xsa          1640586 B  1da14822e9ad7d1d705968ca3d10bee9029e58dd85b2d5e58ffb80dcd803ef5b
+release_files/drc.rpt                 25839 B  1cfed6c7598c11511f8d9a523d4cf4c0d0cb0d8d16ca660706225946f03ab475
+release_files/logic_analyzer.bit    4045771 B  014bcce0d877a8acf852dd03f10a7bced6b172a1225a75000fa0548afa8a0e07
+release_files/logic_analyzer.hwh     244705 B  c9619ba683e880ca83e9d6296728a756b2fc8378575908af265e4a9144a2a089
+release_files/timing_summary.rpt      34035 B  7488f22dd3904c3e28521a809e1d9dcc8774f09d724045914145c0efce77ad2e
+release_files/utilization.rpt         11934 B  e55c4e9ef4132025d198f71e064e441e5b60f72cbd03cea45076075b68b6f22a
