@@ -1,9 +1,9 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
-| Date         : Sun Oct 11 14:43:21 2026
+| Date         : Mon Oct 19 12:27:23 2026
 | Host         : LAPTOP-VRM1P5HO running 64-bit major release  (build 9200)
-| Command      : report_timing_summary -file D:/FPGA/FPGA_project/logic_analyzer_50m_complete_v2/timing_summary.rpt
+| Command      : report_timing_summary -file D:/FPGA/build_clean/release_files/timing_summary.rpt
 | Design       : design_1_wrapper
 | Device       : 7z020-clg400
 | Speed File   : -1  PRODUCTION 1.12 2019-11-22
