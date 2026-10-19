@@ -1,5 +1,5 @@
 ﻿测试编号,日期,测试类型,测试对象,输入条件,预期结果,实际结果,证据文件,负责人,结论,备注
-TBD-001,2026-10-16,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,done=1；trigger_ptr=24；clear后done=0,team/evidence/tb_log.txt,队友A,通过,Vivado 2026.1 XSim；来源PR #2
+TBD-001,2026-10-16,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,"PASS: done=1, trigger_ptr=24；PASS: clear returned FSM to IDLE",team/evidence/tb_log.txt,队友A,通过,Vivado 2026.1 XSim；来源PR #2；2026-10-18 在 main 34fa4d6 复跑，输出一致
 TBD-002,2026-10-13,板级,Overlay加载,logic_analyzer.bit,Overlay无错误加载,加载成功；done=1 triggered=1 trigger_ptr=256,TBD-002_overlay_ok.png,队长,通过,control idle=0x81004000
 TBD-003,2026-10-13,板级,Notebook,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；CSV含513行6列,TBD-003_waveform_4ch.png / TBD-003_logic_capture.csv,队长代跑,通过,队长代跑；队友B独立复跑见TBD-010
 TBD-004,,边界,无触发场景,不满足触发条件,超时或未触发状态明确,,,队友A,,待执行
