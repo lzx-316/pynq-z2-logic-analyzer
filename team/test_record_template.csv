@@ -1,18 +1,18 @@
 ﻿测试编号,日期,测试类型,测试对象,输入条件,预期结果,实际结果,证据文件,负责人,结论,备注
-TBD-001,2026-10-16,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,"PASS: done=1, trigger_ptr=24；PASS: clear returned FSM to IDLE",team/evidence/tb_log.txt,队友A,通过,Vivado 2026.1 XSim；来源PR #2；2026-10-18 在 main 34fa4d6 复跑，输出一致
+TBD-001,2026-10-18,仿真,logic_analyzer_tb,复位后内部测试信号,采集完成并产生触发,"PASS: done=1, trigger_ptr=24；PASS: clear returned FSM to IDLE",team/evidence/tb_log.txt,队友A,通过,Vivado 2026.1 XSim；来源PR #2；2026-10-18 在 main 34fa4d6 复跑，输出一致
 TBD-002,2026-10-13,板级,Overlay加载,logic_analyzer.bit,Overlay无错误加载,加载成功；done=1 triggered=1 trigger_ptr=256,TBD-002_overlay_ok.png,队长,通过,control idle=0x81004000
 TBD-003,2026-10-13,板级,Notebook,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；CSV含513行6列,TBD-003_waveform_4ch.png / TBD-003_logic_capture.csv,队长代跑,通过,队长代跑；队友B独立复跑见TBD-010
-TBD-004,,边界,无触发场景,不满足触发条件,超时或未触发状态明确,,,队友A,,待执行
+TBD-004,2026-10-19,边界,无触发场景,probe保持0；pre=8/post=4；运行100个采样点,不触发且状态明确,FSM停留S_RUN；history_count>=8；done=0；triggered=0；环形缓冲持续写入>=90点,team/evidence/2026-10-19/TBD-004_log.txt,队友A,通过,Vivado 2026.1 XSim；5项断言
 TBD-005,2026-10-13,边界,重复采集,连续运行10次,无死锁和超时,连续10次全部done=1且无超时,TBD-005_repeat_10.png,队长,通过,trigger_ptr为256或257均属正常
 TBD-006,2026-10-13,一致性,bit-hwh-Notebook,同一版本,IP名称和寄存器一致,BRAM基地址0x40000000长度8192与hwh一致,TBD-006_addrs.png,队长,通过,该PYNQ版本ip_dict不含BRAM控制器；地址截图10-14补齐
 TBD-007,2026-10-14,板级,Overlay加载（干净重建bit）,logic_analyzer.bit重建版,Overlay无错误加载,加载成功；control idle=0x81004000,rebuild_TBD-007_overlay_ok.png / rebuild_TBD-007_status.png,队长,通过,IP列表与基线一致；BRAM控制器以内存设备暴露
 TBD-008,2026-10-14,板级,Notebook（干净重建bit）,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；valid samples=513；CSV已导出,rebuild_TBD-008_waveform_4ch.png / rebuild_TBD-008_logic_capture.csv,队长,通过,first probes为0至15递增计数
 TBD-009,2026-10-14,边界,重复采集（干净重建bit）,连续运行10次,无死锁和超时,连续10次全部done=1；trigger_ptr范围256至257,rebuild_TBD-009_repeat_10.png,队长,通过,与基线10-13结果一致
 TBD-010,2026-10-19,板级,Notebook（队员B独立复跑）,内部测试模式,显示4通道波形并导出CSV,Overlay加载成功；done=1 triggered=1 trigger_ptr=256；valid samples=513；CSV 513行6列；连续10次PASS 10/10,TBD-010_overlay_ok.png / TBD-010_waveform_4ch.png / TBD-010_logic_capture.csv / TBD-010_repeat_10.png,队友B,通过,使用main提交的bit与hwh；本地10-19临时版本未使用
-TBD-011,,边界,上升沿触发,CH0由0变1,正确触发并记录trigger_ptr,,,队友A,,待执行
-TBD-012,,边界,下降沿触发,CH0由1变0,正确触发并记录trigger_ptr,,,队友A,,待执行
-TBD-013,,边界,任意边沿触发,CH0发生跳变,正确触发并记录trigger_ptr,,,队友A,,待执行
-TBD-014,,边界,预触发和后触发组合,修改pre_trigger与post_trigger,有效样本数和触发点位置正确,,,队友A,,待执行
-TBD-015,,边界,环形缓冲回绕,连续采样超过2048点,数据无丢点且顺序可还原,,,队友A,,待执行
-TBD-016,,边界,采集中clear,采集运行时写入clear,done清零且下一次arm可重新采集,,,队友A,,待执行
+TBD-011,2026-10-19,边界,上升沿触发,trigger_mode=0；CH0由0变1,正确触发并记录trigger_ptr,低电平期间不触发；0→1后triggered=1；trigger_ptr==wr_ptr,team/evidence/2026-10-19/TBD-011_log.txt,队友A,通过,Vivado 2026.1 XSim；3项断言
+TBD-012,2026-10-19,边界,下降沿触发,trigger_mode=1；CH0由1变0,下降沿触发且上升沿不误触发,上升沿不触发；1→0后triggered=1；trigger_ptr==wr_ptr,team/evidence/2026-10-19/TBD-012_log.txt,队友A,通过,Vivado 2026.1 XSim；3项断言
+TBD-013,2026-10-19,边界,任意边沿触发,trigger_mode=2；CH0发生跳变,两种边沿均触发,上升沿触发；稳定电平不触发；下降沿触发,team/evidence/2026-10-19/TBD-013_log.txt,队友A,通过,Vivado 2026.1 XSim；3项断言
+TBD-014,2026-10-19,边界,预触发和后触发组合,0/0、1/0、0/1、8/4四组,触发正确且有效样本数=pre+post+1,四组均正确触发并done；触发后写入数分别为0/0/1/4并与post一致,team/evidence/2026-10-19/TBD-014_log.txt,队友A,通过,Vivado 2026.1 XSim；13项断言
+TBD-015,2026-10-19,边界,环形缓冲回绕,arm后先写入2100个采样点再触发,地址回绕且数据不丢并正确触发,写地址8188→0回绕；history_count封顶2048；wr_ptr=52；回绕后仍能触发且done,team/evidence/2026-10-19/TBD-015_log.txt,队友A,通过,Vivado 2026.1 XSim；7项断言
+TBD-016,2026-10-19,边界,采集中clear,S_RUN状态下写入clear,done清零且回IDLE并可重新arm,state→IDLE；done/triggered/wr_ptr全部清零；重新arm后再次触发并done,team/evidence/2026-10-19/TBD-016_log.txt,队友A,通过,Vivado 2026.1 XSim；8项断言
 TBD-017,2026-10-19,板级,发布候选bit/hwh smoke test,当前repo/pynq新bit与hwh,Overlay加载并完成一次4通道采集,Overlay加载成功；done=1；triggered=1；trigger_ptr=257；valid samples=513；CSV为513行6列；连续10次PASS 10/10,TBD-017_overlay_ok.png / TBD-017_status.png / TBD-017_valid_samples.png / TBD-017_waveform_4ch.png / TBD-017_csv_saved.png / TBD-017_repeat_10.png / TBD-017_logic_capture.csv,队长,通过,新发布候选bit/hwh板级smoke test
