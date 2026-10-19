@@ -8,7 +8,7 @@ TBD-006,2026-10-13,一致性,bit-hwh-Notebook,同一版本,IP名称和寄存器�
 TBD-007,2026-10-14,板级,Overlay加载（干净重建bit）,logic_analyzer.bit重建版,Overlay无错误加载,加载成功；control idle=0x81004000,rebuild_TBD-007_overlay_ok.png / rebuild_TBD-007_status.png,队长,通过,IP列表与基线一致；BRAM控制器以内存设备暴露
 TBD-008,2026-10-14,板级,Notebook（干净重建bit）,内部测试模式,显示4通道波形并导出CSV,4通道方波正常；valid samples=513；CSV已导出,rebuild_TBD-008_waveform_4ch.png / rebuild_TBD-008_logic_capture.csv,队长,通过,first probes为0至15递增计数
 TBD-009,2026-10-14,边界,重复采集（干净重建bit）,连续运行10次,无死锁和超时,连续10次全部done=1；trigger_ptr范围256至257,rebuild_TBD-009_repeat_10.png,队长,通过,与基线10-13结果一致
-TBD-010,,板级,Notebook（队员B独立复跑）,内部测试模式,显示4通道波形并导出CSV,,,队友B,,待执行；使用最新main的bit和hwh
+TBD-010,2026-10-19,板级,Notebook（队员B独立复跑）,内部测试模式,显示4通道波形并导出CSV,Overlay加载成功；done=1 triggered=1 trigger_ptr=256；valid samples=513；CSV 513行6列；连续10次PASS 10/10,TBD-010_overlay_ok.png / TBD-010_waveform_4ch.png / TBD-010_logic_capture.csv / TBD-010_repeat_10.png,队友B,通过,使用main提交的bit与hwh；本地10-19临时版本未使用
 TBD-011,,边界,上升沿触发,CH0由0变1,正确触发并记录trigger_ptr,,,队友A,,待执行
 TBD-012,,边界,下降沿触发,CH0由1变0,正确触发并记录trigger_ptr,,,队友A,,待执行
 TBD-013,,边界,任意边沿触发,CH0发生跳变,正确触发并记录trigger_ptr,,,队友A,,待执行
