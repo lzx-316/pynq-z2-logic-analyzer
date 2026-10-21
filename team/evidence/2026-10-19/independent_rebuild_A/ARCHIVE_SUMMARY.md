@@ -30,7 +30,7 @@
 ## 独立构建 SHA256
 
 ```text
-logic_analyzer.bit  014bccce0d877a8acf852dd03f10a7bced6b172a1225a75000fa0548afa8a0e07
+logic_analyzer.bit  014bcce0d877a8acf852dd03f10a7bced6b172a1225a75000fa0548afa8a0e07
 logic_analyzer.hwh  c9619ba683e880ca83e9d6296728a756b2fc8378575908af265e4a9144a2a089
 design_1.xsa        1da14822e9ad7d1d705968ca3d10bee9029e58dd85b2d5e58ffb80dcd803ef5b
 ```
