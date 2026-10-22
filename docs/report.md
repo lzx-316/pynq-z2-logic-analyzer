@@ -216,7 +216,7 @@ DRC 检查无未处理违规，设计状态为 Fully Routed。
 
 板级测试记录（`team/test_record_template.csv`）如下：
 
-**表 5-3 板级测试结果**
+**表 5-3 测试结果汇总**
 
 | 编号 | 测试内容 | 结果 | 执行人 |
 |---|---|---|---|
@@ -227,8 +227,18 @@ DRC 检查无未处理违规，设计状态为 Fully Routed。
 | TBD-008 | 重建 bit 采集 | 有效样本 513，CSV 已导出 | 队长 |
 | TBD-009 | 重建 bit 连续 10 次 | 10 次全部 done=1 | 队长 |
 | TBD-010 | 队友B 独立复跑 | Overlay 成功；done=1 triggered=1 trigger_ptr=256；valid=513；CSV 513×6；连续 10 次 PASS 10/10 | 队友B |
+| TBD-011 | 上升沿触发（仿真） | 低电平不触发，0→1 后 triggered=1，3 项断言通过 | 队友A |
+| TBD-012 | 下降沿触发（仿真） | 上升沿不误触发，1→0 后 triggered=1，3 项断言通过 | 队友A |
+| TBD-013 | 任意边沿触发（仿真） | 上升沿与下降沿均触发，稳定电平不触发，3 项断言通过 | 队友A |
+| TBD-014 | 预/后触发组合（仿真） | 0/0、1/0、0/1、8/4 四组均正确，13 项断言通过 | 队友A |
+| TBD-015 | 环形缓冲回绕（仿真） | 写地址 8188→0 回绕，回绕后仍能触发，7 项断言通过 | 队友A |
+| TBD-016 | 采集中 clear（仿真） | 状态回 IDLE，done/triggered/wr_ptr 清零，可重新 arm，8 项断言通过 | 队友A |
+| TBD-017 | 发布候选 bit/hwh smoke test | Overlay 成功；done=1 triggered=1 trigger_ptr=257；valid=513；连续 10 次通过 | 队长 |
+| TBD-018 | Tcl 独立干净重建 | WNS=10.552、LUT=1891、FF=2648、BRAM=2，与队长构建一致 | 队友A |
 
 TBD-010 使用 main 分支提交的 bit 与 hwh，在 PYNQ-Z2 上独立完成，证据见 `team/evidence/2026-10-19/`（Overlay 截图、四通道波形、CSV、连续 10 次输出）。
+
+TBD-011~TBD-016 覆盖三种触发模式、预/后触发组合、环形缓冲回绕与采集中 clear 的仿真边界测试，均在 Vivado 2026.1 XSim 下通过；TBD-017 对发布候选 bit/hwh 做了板级 smoke test；TBD-018 由队友A 在自己的环境中用 Tcl 从全新目录独立重建，时序与资源结果与队长构建一致，验证了工程的可持续复现性。
 
 ![图 5-1 Overlay 加载输出](../team/evidence/2026-10-19/TBD-010_overlay_ok.png)
 
