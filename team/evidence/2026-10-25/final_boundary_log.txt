@@ -1,0 +1,76 @@
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sun Oct 25 09:51:32 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_bnd_final/xsim_script.tcl
+# xsim {tb_bnd_final} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+BOUNDARY_TB start (CASE=0, 0=all)
+
+=== TBD-004: no trigger (probe stays low) ===
+    PASS: state stays in RUN
+    PASS: history_count reached pre_trigger
+    PASS: done stays 0
+    PASS: triggered stays 0
+    PASS: ring buffer keeps being written (>=90 samples)
+
+=== TBD-011: rising edge (trigger_mode=0) ===
+    PASS: no trigger while probe stays low
+    PASS: rising edge triggers
+    PASS: trigger_ptr equals wr_ptr at trigger
+
+=== TBD-012: falling edge (trigger_mode=1) ===
+    PASS: rising transition does NOT trigger in falling mode
+    PASS: falling edge triggers
+    PASS: trigger_ptr equals wr_ptr at trigger
+
+=== TBD-013: any edge (trigger_mode=2) ===
+    PASS: any edge: rising transition triggers
+    PASS: any edge: no trigger while stable high
+    PASS: any edge: falling transition triggers
+
+=== TBD-014: pre/post combinations ===
+    PASS: pre=8/post=4: >=8 samples written before trigger
+    PASS: pre=8/post=4: trigger fires
+    PASS: pre=8/post=4: done asserts
+    PASS: pre=8/post=4: exactly 4 writes after trigger
+    PASS: pre=0/post=0: triggers on first allowed edge
+    PASS: pre=0/post=0: done asserts
+    PASS: pre=0/post=0: no post writes
+    PASS: pre=1/post=0: trigger fires
+    PASS: pre=1/post=0: done asserts
+    PASS: pre=1/post=0: no post writes
+    PASS: pre=0/post=1: trigger fires
+    PASS: pre=0/post=1: done asserts
+    PASS: pre=0/post=1: exactly 1 post write
+
+=== TBD-015: ring buffer wraparound (>2048 samples) ===
+    PASS: write address wrapped 8188 -> 0
+    PASS: history_count capped at 2048
+    PASS: >=2095 samples written before trigger
+    INFO: wr_count=2100  wr_ptr=52  wr_count%2048=52
+    PASS: wr_ptr == writes mod 2048
+    PASS: trigger still detected after wraparound
+    PASS: trigger_ptr correct after wraparound
+    PASS: done asserts after wraparound capture
+
+=== TBD-016: clear while capturing ===
+    PASS: capture is running
+    PASS: done low while running
+    PASS: clear during capture returns FSM to IDLE
+    PASS: done cleared
+    PASS: triggered cleared
+    PASS: wr_ptr cleared
+    PASS: re-arm after clear captures again
+    PASS: done asserts after re-arm
+
+BOUNDARY_SUMMARY: ALL PASS
+$finish called at time : 2441271 ns : File "D:/FPGA/production/pynq-z2-logic-analyzer/tb/logic_analyzer_boundary_tb.v" Line 395
+exit
+INFO: [Common 17-206] Exiting xsim at Sun Oct 25 09:51:34 2026...
