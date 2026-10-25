@@ -65,6 +65,16 @@ TBD-017 使用的就是当前 `pynq/` 的 bit/hwh（git blob `92e44f0f` / `fabe4
 能。独立重建（TBD-018）在自己的环境、全新目录用 Tcl 复现，结果与队长构建一致；hwh 除 `TIMESTAMP` 外逐行相同。
 注意 `scripts/build_clean_project.tcl` 里的 `repo_scripts` 是绝对路径，换机器时需改本地路径（不修改仓库脚本，只改临时副本）。
 
+**Q17：发布说明（PR #18）、最终回归报告（PR #19）和版本一致性是什么关系？**
+三者用同一套数据：发布说明引用 10-19 干净重建的产物与测试结果；最终回归报告在最新 main 上复跑仿真并逐项核对
+bit/hwh/XSA/报告/Notebook/Tcl 的指纹；版本一致性检查是这两份文档的依据。三者数字必须一致（WNS 10.552、
+LUT 1891、FF 2648、BRAM 2、DRC 0 Error，20+1 Warning）。
+
+**Q18：如果 bit 和 hwh 不配套，会出什么问题？怎么发现？**
+Overlay 会按 hwh 的 IP 名/地址去访问 PL，若 hwh 与 bit 不是同一轮构建，可能出现 IP 找不到、地址越界或读回数据异常。
+发现方法：解开 XSA，比较其中的 `design_1.bit` / `design_1.hwh` 与 `pynq/` 两份的 SHA256；再核对 hwh 的
+`TIMESTAMP` 与报告的 `Date` 是否属同一构建会话（本次为 12:23:48 与 12:27:22~26）。
+
 ## E. 结论
 
 以上问答覆盖同步、分频、触发、数据还原、Notebook 和版本一致性；证据均可在 `team/evidence/`、

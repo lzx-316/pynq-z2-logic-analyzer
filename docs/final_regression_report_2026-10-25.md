@@ -5,6 +5,28 @@
 - 环境：Vivado Simulator 2026.1（Build 6511674）、PYNQ-Z2（xc7z020clg400-1）
 - 结论：**仿真与版本链均通过；P0 问题 0 项**。有 1 项 P1 需队长确认（见第 4 节）。
 
+## 0. 交付物一致性速览
+
+| 交付物 | 当前版本 / 指纹 | 对应构建 | 结论 |
+|---|---|---|---|
+| bit | SHA256 `2c1ee29d20f246e7f19c61980f80cf7eb3d16671e88d6464a1d82f190f2eba20`；4,045,771 B；blob `92e44f0f` | 2026-10-19 干净重建 | ✅ |
+| hwh | SHA256 `6340c1c7fd2ecda0da05ee4edfd20f83c69db06c7f270be228b0dbda249ea1f2`；244,705 B；blob `fabe4fff`；`TIMESTAMP=10-19 12:23:48` | 同一次 10-19 构建 | ✅ |
+| XSA | SHA256 `88d46f03d5756f0d7431c46433762ab7012795a6966e4b918efed62c2a433113`；1,640,581 B；blob `6cc1d90c` | XSA 内 bit/hwh 与上面两份逐字节一致 | ✅ |
+| 报告 | `timing_summary.rpt` / `utilization.rpt` / `drc.rpt`，均为 10-19 12:27:22~26 | 与 hwh 同一构建会话；WNS 10.552、LUT 1891、FF 2648、BRAM 2、DRC 0 Error | ✅ |
+| Notebook | `notebooks/logic_analyzer_v2.ipynb`，blob `bcf0062a` | IP 名/地址/深度/pre-post 与 hwh 一致 | ✅ |
+| Tcl | `recreate_project.tcl` blob `aae55a9e`；`build_clean_project.tcl` blob `00b8f18` | 自 `5d6d324` 未变；TBD-018 独立重建复现 hwh（除时间戳） | ✅ |
+| 设计报告 | `docs/report.md` | 数字与上述报告一致 | ✅ |
+
+## 0.1 最终回归矩阵
+
+| 用例 | 方法 | 结果 | 证据 |
+|---|---|---|---|
+| TBD-001 | 主 Testbench（xsim） | 两条 PASS（424271 ns / Line 69） | `team/evidence/2026-10-25/final_tb_log.txt` |
+| TBD-004、TBD-011~016 | 边界 Testbench（xsim） | 7 用例 42 项断言 ALL PASS | `team/evidence/2026-10-25/final_boundary_log.txt` |
+| TBD-010 | 板级（旧 baseline bit） | 通过（Overlay/波形/CSV/连续 10 次） | `team/evidence/2026-10-19/TBD-010_*` |
+| TBD-017 | 板级（发布 bit/hwh + v1 Notebook） | 通过（trigger_ptr=257、valid=513、10/10） | `team/evidence/2026-10-19/TBD-017_result.md` |
+| TBD-018 | 独立 Tcl 重建（主机 DYH） | 时序/资源/DRC 与队长构建一致 | `team/evidence/2026-10-19/independent_rebuild_A/` |
+
 ## 1. 回归测试结果
 
 ### 1.1 主 Testbench（TBD-001）
@@ -114,7 +136,22 @@ BOUNDARY_SUMMARY: ALL PASS
 - **未发现 P0 问题**。唯一 P1 是"发布 bit + Notebook v2"组合缺板级记录，建议在 10/31 冻结前补一次
   2 分钟 smoke test 或书面确认。
 
-## 6. 证据索引
+## 6. 10/31 冻结前检查清单
+
+- [x] 最新 main 上主 TB 通过
+- [x] 边界测试 7 用例 / 42 项断言通过
+- [x] bit/hwh/XSA 逐字节配套
+- [x] 报告与 hwh 属同一 10-19 构建会话，数字一致
+- [x] Notebook v2 与 hwh 的 IP/地址/深度/pre-post 一致
+- [x] Tcl 可复现（TBD-018 独立重建）
+- [ ] **P1**：发布 bit + Notebook v2 的交叉板级确认（补测或书面等价说明）
+- [ ] 报告 v1.0 最终复核（团队）
+- [ ] PPT / 视频最终检查（团队）
+- [ ] 完整彩排（团队）
+
+**P0 结论：无 P0 问题。** 唯一 P1 为发布 bit + Notebook v2 的交叉验证，建议 10/31 前完成。
+
+## 7. 证据索引
 
 | 内容 | 位置 |
 |---|---|
