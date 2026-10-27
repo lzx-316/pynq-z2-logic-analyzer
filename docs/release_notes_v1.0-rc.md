@@ -1,8 +1,8 @@
 # PYNQ-Z2 四通道逻辑分析仪 v1.0-rc 发布说明
 
-日期：2026-10-25
+日期：2026-10-27
 状态：Release Candidate（发布候选，未最终冻结）
-基线提交：`aa5b0629a413fd6da0712d265376bfd0a23ad1ef`
+基线提交：`d6e5b08ca151dc4d5b10c3879f76d27cc121a79e`
 验证工具：Vivado 2026.1、PYNQ Jupyter、Vivado XSim
 
 ## 1. 发布范围
@@ -66,7 +66,7 @@ team/evidence/tb_log.txt
 ## 4. 软件与文档
 
 - Notebook v2：`notebooks/logic_analyzer_v2.ipynb`
-- 设计报告初稿：`docs/report.md`
+- 设计报告 v1.0：`docs/report.md`
 - 报告图：`docs/figs/fig2_1_architecture.png`、`docs/figs/fig3_1_fsm.png`
 - 时序、资源、DRC 汇总：`docs/timing_resource_drc_summary_2026-10-19.md`
 - 术语表：`docs/glossary.md`
@@ -89,9 +89,9 @@ Notebook v2 已包含 Overlay 检查、7 步状态输出、`write_ctrl()` 兼容
 - [x] TBD-010 板级独立复跑通过
 - [x] TBD-017 发布候选 smoke test 通过
 - [x] 独立 Tcl 重建结果与队长构建一致
-- [x] 报告初稿、图表和时序资源汇总已合入 main
+- [x] 报告 v1.0、PPT、图表和时序资源汇总已合入 main
 - [ ] 报告 v1.0 最终复核
-- [ ] PPT 与视频最终检查
+- [ ] PPT 与视频最终检查（实际 MP4 尚待录制）
 - [ ] 团队完整彩排
 
 ## 7. 版本冻结说明
