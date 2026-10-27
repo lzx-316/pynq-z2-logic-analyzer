@@ -1,0 +1,18 @@
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Sun Oct 25 09:51:27 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_final/xsim_script.tcl
+# xsim {tb_final} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS: done=1, trigger_ptr=24
+PASS: clear returned FSM to IDLE
+$finish called at time : 424271 ns : File "D:/FPGA/production/pynq-z2-logic-analyzer/tb/logic_analyzer_tb.v" Line 69
+exit
+INFO: [Common 17-206] Exiting xsim at Sun Oct 25 09:51:30 2026...
